@@ -9,9 +9,11 @@
 
     <TabBar>
         <ShellContent 
-                  ContentTemplate="{DataTemplate local:BookPage}"/>
+            Icon="ico_book_open.png"
+            ContentTemplate="{DataTemplate local:BookPage}"/>
         <ShellContent 
-                  ContentTemplate="{DataTemplate local:ShelfPage}"/>
+            Icon="ico_gear.png"
+            ContentTemplate="{DataTemplate local:ShelfPage}"/>
     </TabBar>
 
 </Shell>
