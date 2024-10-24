@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 namespace Booker;
 
 public partial class ShelfPage : ContentPage
@@ -10,10 +12,10 @@ public partial class ShelfPage : ContentPage
     private async void AddToShelf(object sender, EventArgs e)
     {
         // TODO: null check
-        string pathToBook = await PickTheFile();
+        string pathToFile = await PickTheFile();
+        string userDir = FileSystem.Current.AppDataDirectory + "/UserBooks";
 
-        // TODO: Remove
-        booksList.Add(new Label { Text = "The book" });
+        CreateUserFolder(userDir);
     }
 
     private async Task<string?> PickTheFile()
@@ -37,5 +39,13 @@ public partial class ShelfPage : ContentPage
 
         // Pass the path to file
         return txtPicked?.FullPath;
+    }
+
+    private void CreateUserFolder(string dir) 
+    {
+        if (!System.IO.Directory.Exists(dir))
+        {
+            System.IO.Directory.CreateDirectory(dir);
+        }
     }
 }
