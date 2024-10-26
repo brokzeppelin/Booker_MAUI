@@ -6,7 +6,7 @@ public partial class ShelfPage : ContentPage
 {
 	public ShelfPage()
 	{
-		InitializeComponent();
+		InitializeComponent();        
 	}
 
     private async void AddToShelf(object sender, EventArgs e)
@@ -16,6 +16,13 @@ public partial class ShelfPage : ContentPage
         string userDir = FileSystem.Current.AppDataDirectory + "/UserBooks";
 
         CreateUserFolder(userDir);
+
+        if (pathToFile != null)
+        {
+            ProcessAndSave(pathToFile, userDir);
+        }
+
+        // TODO: create book class to make listview on its base
     }
 
     private async Task<string?> PickTheFile()
@@ -46,6 +53,26 @@ public partial class ShelfPage : ContentPage
         if (!System.IO.Directory.Exists(dir))
         {
             System.IO.Directory.CreateDirectory(dir);
+        }
+    }
+
+    private async void ProcessAndSave(string what, string where)
+    {
+        string fileContent;
+
+        using (StreamReader reader = new StreamReader(what))
+        {
+            fileContent = await reader.ReadToEndAsync();
+        }
+
+        string fileName = what.Substring(what.LastIndexOf('/'));
+
+        using (StreamWriter writer = new StreamWriter(where + fileName))
+        {
+            if (!System.IO.File.Exists(where + fileName))
+            {
+                writer.WriteLine(fileContent);
+            }
         }
     }
 }
