@@ -1,4 +1,6 @@
 using System.Runtime.InteropServices;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Booker;
 
@@ -53,7 +55,16 @@ public partial class ShelfPage : ContentPage
         if (!System.IO.Directory.Exists(dir))
         {
             System.IO.Directory.CreateDirectory(dir);
+            CreateSettingsXML(dir);
         }
+    }
+
+    private void CreateSettingsXML(string userFolder)
+    {
+        XmlDocument settingsXML = new XmlDocument();
+        settingsXML.LoadXml("<settings></settings>");
+        XmlWriter writerXML = XmlWriter.Create(userFolder + "/data.xml");
+        settingsXML.Save(writerXML);
     }
 
     private async void ProcessAndSave(string what, string where)
