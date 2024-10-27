@@ -13,7 +13,6 @@ public partial class ShelfPage : ContentPage
 
     private async void AddToShelf(object sender, EventArgs e)
     {
-        // TODO: null check
         string pathToFile = await PickTheFile();
         string userDir = FileSystem.Current.AppDataDirectory + "/UserBooks";
 
@@ -63,7 +62,7 @@ public partial class ShelfPage : ContentPage
     {
         XmlDocument settingsXML = new XmlDocument();
         settingsXML.LoadXml("<settings></settings>");
-        XmlWriter writerXML = XmlWriter.Create(userFolder + "/data.xml");
+        XmlWriter writerXML = XmlWriter.Create(userFolder + "/settings.xml");
         settingsXML.Save(writerXML);
     }
 
