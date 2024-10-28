@@ -66,6 +66,22 @@ public partial class ShelfPage : ContentPage
         settingsXML.Save(writerXML);
     }
 
+    private void InsertSettingsXML(string userFolder, string fileName)
+    {
+        XmlDocument settingsXML = new XmlDocument();
+        settingsXML.Load(userFolder + "/settings.xml");
+
+        XmlElement bookXmlElement = settingsXML.CreateElement("book");
+        bookXmlElement.InnerXml = $"""
+                                  <id>{Guid.NewGuid()}</id>
+                                  <name>{fileName.TrimEnd()}</name>
+                                  <bookmark></bookmark>
+                                  """;
+
+        settingsXML.DocumentElement.AppendChild(bookXmlElement);
+        settingsXML.Save(userFolder + "/settings.xml");
+    }
+
     private async void ProcessAndSave(string what, string where)
     {
         string fileContent;
@@ -75,7 +91,7 @@ public partial class ShelfPage : ContentPage
             fileContent = await reader.ReadToEndAsync();
         }
 
-        string fileName = what.Substring(what.LastIndexOf('/'));
+        string fileName = Path.GetFileName(what);
 
         using (StreamWriter writer = new StreamWriter(where + fileName))
         {
@@ -84,5 +100,7 @@ public partial class ShelfPage : ContentPage
                 writer.WriteLine(fileContent);
             }
         }
+
+        InsertSettingsXML(where, Path.GetFileNameWithoutExtension(what));
     }
 }
