@@ -8,8 +8,8 @@ public partial class ShelfPage : ContentPage
 {
 	public ShelfPage()
 	{
-		InitializeComponent();        
-	}
+		InitializeComponent();
+    }
 
     private async void AddToShelf(object sender, EventArgs e)
     {
@@ -22,8 +22,6 @@ public partial class ShelfPage : ContentPage
         {
             ProcessAndSave(pathToFile, userDir);
         }
-
-        // TODO: create book class to make listview on its base
     }
 
     private async Task<string?> PickTheFile()
@@ -74,6 +72,7 @@ public partial class ShelfPage : ContentPage
         XmlElement bookXmlElement = settingsXML.CreateElement("book");
         bookXmlElement.InnerXml = $"""
                                   <id>{Guid.NewGuid()}</id>
+                                  <dateadded>{System.DateTime.Today.ToString()}</dateadded>
                                   <name>{fileName.TrimEnd()}</name>
                                   <bookmark></bookmark>
                                   """;
