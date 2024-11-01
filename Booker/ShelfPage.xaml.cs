@@ -6,9 +6,25 @@ namespace Booker;
 
 public partial class ShelfPage : ContentPage
 {
-	public ShelfPage()
+    BookCollection Books;
+    public ShelfPage()
 	{
-		InitializeComponent();
+		InitializeComponent(); 
+        PopulateListView();
+    }
+
+    public void PopulateListView()
+    {
+        string pathToSettings = FileSystem.Current.AppDataDirectory + "/UserBooks/settings.xml";
+        if (!System.IO.File.Exists(pathToSettings))
+            return;
+        XmlSerializer serializer = new XmlSerializer(typeof(BookCollection));
+        Books = new BookCollection();
+        using (Stream reader = new FileStream(pathToSettings, FileMode.Open))
+        {
+            Books = (BookCollection)serializer.Deserialize(reader);
+        }
+       // BooksListBox.ItemsSource = Books;
     }
 
     private async void AddToShelf(object sender, EventArgs e)
@@ -59,7 +75,12 @@ public partial class ShelfPage : ContentPage
     private void CreateSettingsXML(string userFolder)
     {
         XmlDocument settingsXML = new XmlDocument();
-        settingsXML.LoadXml("<settings></settings>");
+        settingsXML.LoadXml("""
+        <?xml version="1.0" encoding="UTF-8" ?>
+        <settings>
+        </settings>
+        """
+        );
         XmlWriter writerXML = XmlWriter.Create(userFolder + "/settings.xml");
         settingsXML.Save(writerXML);
     }
@@ -71,10 +92,9 @@ public partial class ShelfPage : ContentPage
 
         XmlElement bookXmlElement = settingsXML.CreateElement("book");
         bookXmlElement.InnerXml = $"""
-                                  <id>{Guid.NewGuid()}</id>
-                                  <dateadded>{System.DateTime.Today.ToString()}</dateadded>
-                                  <name>{fileName.TrimEnd()}</name>
-                                  <bookmark></bookmark>
+                                  <Id>{Guid.NewGuid()}</Id>
+                                  <Title>{fileName.TrimEnd()}</Title>
+                                  <Bookmark>0</Bookmark>
                                   """;
 
         settingsXML.DocumentElement.AppendChild(bookXmlElement);
