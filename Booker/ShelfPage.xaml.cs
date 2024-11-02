@@ -24,7 +24,7 @@ public partial class ShelfPage : ContentPage
         {
             Books = (BookCollection)serializer.Deserialize(reader);
         }
-       // BooksListBox.ItemsSource = Books;
+       BooksListBox.ItemsSource = Books;
     }
 
     private async void AddToShelf(object sender, EventArgs e)

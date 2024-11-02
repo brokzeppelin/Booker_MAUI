@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections;
 using System.Xml.Serialization;
 
 namespace Booker
@@ -15,9 +12,70 @@ namespace Booker
     }
 
     [XmlRootAttribute("settings")]
-    public class BookCollection
+    public class BookCollection : IEnumerable
     {
         [XmlElement("book")]
         public Book[] Books { get; set; }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return (IEnumerator)GetEnumerator();
+        }
+        public void Add(Book book)
+        {
+        }
+
+        public BookEnumerator GetEnumerator()
+        {
+            return new BookEnumerator(Books);
+        }
+    }
+
+    // When you implement IEnumerable, you must also implement IEnumerator.
+    public class BookEnumerator : IEnumerator
+    {
+        public Book[] books;
+
+        // Enumerators are positioned before the first element
+        // until the first MoveNext() call.
+        int position = -1;
+
+        public BookEnumerator(Book[] list)
+        {
+            books = list;
+        }
+
+        public bool MoveNext()
+        {
+            position++;
+            return (position < books.Length);
+        }
+
+        public void Reset()
+        {
+            position = -1;
+        }
+
+        object IEnumerator.Current
+        {
+            get
+            {
+                return Current;
+            }
+        }
+
+        public Book Current
+        {
+            get
+            {
+                try
+                {
+                    return books[position];
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    throw new InvalidOperationException();
+                }
+            }
+        }
     }
 }
