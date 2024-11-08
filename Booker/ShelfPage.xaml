@@ -8,7 +8,7 @@
         <ListView Grid.Row="0" x:Name="BooksListBox" ItemsSource="{Binding Books}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Title}"/>
+                    <TextCell Text="{Binding Title}" x:Uid="{Binding Id}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

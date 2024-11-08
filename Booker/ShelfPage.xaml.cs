@@ -6,7 +6,7 @@ namespace Booker;
 
 public partial class ShelfPage : ContentPage
 {
-    BookCollection Books;
+    BookCollection Library;
     public ShelfPage()
 	{
 		InitializeComponent(); 
@@ -15,16 +15,11 @@ public partial class ShelfPage : ContentPage
 
     public void PopulateListView()
     {
-        string pathToSettings = FileSystem.Current.AppDataDirectory + "/UserBooks/settings.xml";
-        if (!System.IO.File.Exists(pathToSettings))
+        if (!System.IO.File.Exists(Path.Combine(FileSystem.Current.AppDataDirectory, Constants.UserFolder, Constants.SettingsFile)))
             return;
-        XmlSerializer serializer = new XmlSerializer(typeof(BookCollection));
-        Books = new BookCollection();
-        using (Stream reader = new FileStream(pathToSettings, FileMode.Open))
-        {
-            Books = (BookCollection)serializer.Deserialize(reader);
-        }
-       BooksListBox.ItemsSource = Books;
+
+        XmlParser xmlParser = new XmlParser();
+        BooksListBox.ItemsSource = xmlParser.Parse().Books;
     }
 
     private async void AddToShelf(object sender, EventArgs e)
