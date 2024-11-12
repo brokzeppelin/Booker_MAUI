@@ -6,7 +6,6 @@ namespace Booker;
 
 public partial class ShelfPage : ContentPage
 {
-    BookCollection Library;
     public ShelfPage()
 	{
 		InitializeComponent(); 

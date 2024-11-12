@@ -7,9 +7,12 @@ namespace Booker
         public App()
         {
             InitializeComponent();
-            SetUp();
 
             MainPage = new AppShell();
+        }
+        protected override void OnStart() 
+        {
+            SetUp();
         }
         public void SetUp()
         {
