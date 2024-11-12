@@ -15,9 +15,6 @@ public partial class ShelfPage : ContentPage
 
     public void PopulateListView()
     {
-        if (!System.IO.File.Exists(Path.Combine(FileSystem.Current.AppDataDirectory, Constants.UserFolder, Constants.SettingsFile)))
-            return;
-
         XmlParser xmlParser = new XmlParser();
         BooksListBox.ItemsSource = xmlParser.Parse().Books;
     }
@@ -26,8 +23,6 @@ public partial class ShelfPage : ContentPage
     {
         string pathToFile = await PickTheFile();
         string userDir = FileSystem.Current.AppDataDirectory + "/UserBooks";
-
-        CreateUserFolder(userDir);
 
         if (pathToFile != null)
         {
@@ -56,28 +51,6 @@ public partial class ShelfPage : ContentPage
 
         // Pass the path to file
         return txtPicked?.FullPath;
-    }
-
-    private void CreateUserFolder(string dir) 
-    {
-        if (!System.IO.Directory.Exists(dir))
-        {
-            System.IO.Directory.CreateDirectory(dir);
-            CreateSettingsXML(dir);
-        }
-    }
-
-    private void CreateSettingsXML(string userFolder)
-    {
-        XmlDocument settingsXML = new XmlDocument();
-        settingsXML.LoadXml("""
-        <?xml version="1.0" encoding="UTF-8" ?>
-        <settings>
-        </settings>
-        """
-        );
-        XmlWriter writerXML = XmlWriter.Create(userFolder + "/settings.xml");
-        settingsXML.Save(writerXML);
     }
 
     private void InsertSettingsXML(string userFolder, string fileName)
