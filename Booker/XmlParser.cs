@@ -11,7 +11,7 @@ namespace Booker
 
             using (Stream reader = new FileStream(Path.Combine(FileSystem.Current.AppDataDirectory, Constants.UserFolder, Constants.SettingsFile), FileMode.Open))
             {
-                return serializer.Deserialize(reader) as BookCollection;
+                return serializer?.Deserialize(reader) as BookCollection ?? new BookCollection();
             }
         }
     }
