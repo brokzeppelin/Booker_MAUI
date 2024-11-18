@@ -15,55 +15,21 @@ public partial class ShelfPage : ContentPage
     public void PopulateListView()
     {
         XmlParser xmlParser = new XmlParser();
+        //TODO: ACTUAL binding (MVVM)
+        BookCollection v = xmlParser.Parse();
         BooksListBox.ItemsSource = xmlParser.Parse().Books;
     }
 
     private async void AddToShelf(object sender, EventArgs e)
     {
         string pathToFile = await Filer.GetPickedFileFullPath();
-        string userDir = FileSystem.Current.AppDataDirectory + "/UserBooks";
+        Book newBook = new Book() { 
+            Id = Guid.NewGuid().ToString(), 
+            Title = Path.GetFileName(pathToFile)};
 
-        if (pathToFile != null)
-        {
-            ProcessAndSave(pathToFile, userDir);
-        }
-    }
+        string content = Filer.GetTxtFileContent(pathToFile);
+        Filer.WriteToFile(newBook.Title, Path.Combine(FileSystem.Current.AppDataDirectory, Constants.UserFolder), content);
 
-    private void InsertSettingsXML(string userFolder, string fileName)
-    {
-        XmlDocument settingsXML = new XmlDocument();
-        settingsXML.Load(userFolder + "/settings.xml");
-
-        XmlElement bookXmlElement = settingsXML.CreateElement("book");
-        bookXmlElement.InnerXml = $"""
-                                  <Id>{Guid.NewGuid()}</Id>
-                                  <Title>{fileName.TrimEnd()}</Title>
-                                  <Bookmark>0</Bookmark>
-                                  """;
-
-        settingsXML.DocumentElement.AppendChild(bookXmlElement);
-        settingsXML.Save(userFolder + "/settings.xml");
-    }
-
-    private async void ProcessAndSave(string what, string where)
-    {
-        string fileContent;
-
-        using (StreamReader reader = new StreamReader(what))
-        {
-            fileContent = await reader.ReadToEndAsync();
-        }
-
-        string fileName = Path.GetFileName(what);
-
-        using (StreamWriter writer = new StreamWriter(where + fileName))
-        {
-            if (!System.IO.File.Exists(where + fileName))
-            {
-                writer.WriteLine(fileContent);
-            }
-        }
-
-        InsertSettingsXML(where, Path.GetFileNameWithoutExtension(what));
+        newBook.RegisterToXML();
     }
 }

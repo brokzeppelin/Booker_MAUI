@@ -6,15 +6,20 @@ namespace Booker
 {
     public class Book
     {
-        public string Id { get; set; }
-        public string Title { get; set; }
-        public double Bookmark { get; set; }
+        public string Id { get; set; } = String.Empty;
+        public string Title { get; set; } = String.Empty;
+        public double Bookmark { get; set; } = 0;
+
+        public void RegisterToXML()
+        {            
+            Filer.InsertBookElement(XmlParser.Serialize(this));
+        }
     }
 
-    [XmlRootAttribute("settings")]
+    [XmlRootAttribute("Settings")]
     public class BookCollection
     {
-        [XmlElement("book")]
+        [XmlElement("Book")]
         public List<Book> Books { get; set; }
     }
 }
