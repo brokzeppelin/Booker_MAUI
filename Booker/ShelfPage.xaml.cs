@@ -18,7 +18,6 @@ public partial class ShelfPage : ContentPage
     public void PopulateListView()
     {
         XmlParser xmlParser = new XmlParser();
-        //Books = xmlParser.Parse();
         BookCollection bc = xmlParser.Parse();
         foreach (Book book in bc.Books)
         {
