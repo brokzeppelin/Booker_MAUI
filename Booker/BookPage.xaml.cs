@@ -2,21 +2,19 @@
 {
     public partial class BookPage : ContentPage
     {
-        string lastOpenedId = Preferences.Get("lastOpenedId", "noId");
-        public BookPage()
+        public BookPage(Book book)
         {
             InitializeComponent();
-            //LoadBook(lastOpenedId);
+            LoadBook(book);
         }
 
-        //public void LoadBook(string bookId)
-        //{
-        //    string bookText;
-        //    bookBox.Add(
-        //        new Label { Text = bookText}
-        //        );
-        //}
-
+        public void LoadBook(Book book)
+        {
+            if (book.Title == String.Empty) 
+                return;
+            string content = Filer.GetTxtFileContent(Path.Combine(FileSystem.AppDataDirectory, Constants.UserFolder, book.Title));
+            bookBox.Add(
+                new Label { Text = content});
+        }
     }
-
 }

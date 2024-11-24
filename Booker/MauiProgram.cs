@@ -19,6 +19,9 @@ namespace Booker
     		builder.Logging.AddDebug();
 #endif
 
+            builder.Services.AddSingleton<Book>();
+            builder.Services.AddSingleton<BookPage>();
+
             return builder.Build();
         }
     }

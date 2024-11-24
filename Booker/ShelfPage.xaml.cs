@@ -38,4 +38,13 @@ public partial class ShelfPage : ContentPage
 
         newBook.RegisterToXML();
     }
+
+    private async void OnBookClicked(object sender, ItemTappedEventArgs args)
+    {
+        var item = args.Item as Book;
+        if (item == null)
+            return;
+        await Navigation.PushAsync(new BookPage(item));
+        BooksListView.SelectedItem = null;
+    }
 }

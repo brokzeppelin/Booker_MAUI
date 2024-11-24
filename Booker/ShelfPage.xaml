@@ -5,7 +5,7 @@
              x:Class="Booker.ShelfPage"
              xmlns:booker="clr-namespace:Booker">
     <Grid RowDefinitions="*, 100">
-        <ListView Grid.Row="0" x:Name="BooksListBox" ItemsSource="{Binding}">
+        <ListView Grid.Row="0" x:Name="BooksListView" ItemsSource="{Binding}" ItemTapped="OnBookClicked">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type booker:Book}">
                     <ViewCell>
