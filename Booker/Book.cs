@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.ObjectModel;
 using System.Xml.Serialization;
 
 namespace Booker
@@ -20,6 +21,21 @@ namespace Booker
     public class BookCollection
     {
         [XmlElement("Book")]
-        public List<Book> Books { get; set; }
+        public ObservableCollection<Book> Books { get; set; } = [];
+
+        public void Add(Book book)
+        {
+            Books.Add(book);
+        }
+
+        public bool Contains(Book book)
+        {
+            foreach (Book b in Books)
+            {
+                if (b.Title == book.Title)
+                    return true;
+            }
+            return false;
+        }
     }
 }
