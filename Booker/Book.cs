@@ -15,6 +15,11 @@ namespace Booker
         {            
             Filer.InsertBookElement(XmlParser.Serialize(this));
         }
+
+        public void SetAsPreferenced()
+        {
+            Preferences.Default.Set("last", Title);
+        }
     }
 
     [XmlRootAttribute("Settings")]
