@@ -8,7 +8,7 @@ namespace Booker
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(Preferences.Default.ContainsKey("last") ? new BookPage() : new ShelfPage());
         }
         protected override void OnStart() 
         {

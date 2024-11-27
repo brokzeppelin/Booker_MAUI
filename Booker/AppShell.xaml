@@ -3,18 +3,7 @@
     x:Class="Booker.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Booker"
+    xmlns:booker="clr-namespace:Booker"
     Shell.FlyoutBehavior="Disabled"
     Title="Booker">
-
-    <TabBar>
-        <ShellContent 
-            Icon="ico_gear.png"
-            ContentTemplate="{DataTemplate local:ShelfPage}"/>
-        <ShellContent 
-            Shell.TabBarIsVisible="False"
-            Icon="ico_book_open.png"
-            ContentTemplate="{DataTemplate local:BookPage}"/>
-    </TabBar>
-
 </Shell>

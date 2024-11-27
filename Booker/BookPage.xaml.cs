@@ -2,19 +2,28 @@
 {
     public partial class BookPage : ContentPage
     {
+        Book book = new Book();
         public BookPage(Book book)
         {
             InitializeComponent();
-            LoadBook(book);
+            this.book = book;
+            LoadBook(book.Title);
+        }
+        public BookPage()
+        {
+            InitializeComponent();
+            Title = DateTime.Today.ToString();
+            string lastTitle = Preferences.Default.Get("last", String.Empty);
+            LoadBook(lastTitle);
         }
 
-        public void LoadBook(Book book)
+        public void LoadBook(string title)
         {
-            if (book.Title == String.Empty) 
+            if (title == String.Empty)
                 return;
-            string content = Filer.GetTxtFileContent(Path.Combine(FileSystem.AppDataDirectory, Constants.UserFolder, book.Title));
+            string content = Filer.GetTxtFileContent(Path.Combine(FileSystem.AppDataDirectory, Constants.UserFolder, title));
             bookBox.Add(
-                new Label { Text = content});
+                new Label { Text = content });
         }
     }
 }
