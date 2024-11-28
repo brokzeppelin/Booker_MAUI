@@ -25,5 +25,16 @@
             bookBox.Add(
                 new Label { Text = content });
         }
+
+        private void OnOnceTapped(object sender, EventArgs e)
+        {
+            btnToShelf.IsVisible = !btnToShelf.IsVisible;
+        }
+
+        private async void OnBtnToShelfClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ShelfPage());
+            btnToShelf.IsVisible = false;
+        }
     }
 }

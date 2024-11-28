@@ -10,8 +10,20 @@
         <ScrollView
             Grid.Row="1">
             <StackLayout  Grid.Row="1" x:Name="bookBox">
-                
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnOnceTapped"
+                                          NumberOfTapsRequired="1"/>
+                </StackLayout.GestureRecognizers>
             </StackLayout>
         </ScrollView>
+        <Button Grid.Row="1"
+                WidthRequest="50"
+                HeightRequest="50"
+                VerticalOptions="Start"
+                HorizontalOptions="Start"
+                Margin="20"
+                Clicked="OnBtnToShelfClicked"
+                IsVisible="False"
+                x:Name="btnToShelf"/>
          </Grid>
 </ContentPage>

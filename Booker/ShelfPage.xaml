@@ -3,7 +3,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Booker.ShelfPage"
-             xmlns:booker="clr-namespace:Booker">
+             xmlns:booker="clr-namespace:Booker"
+             Title="Back to reading">
     <Grid RowDefinitions="*, 100">
         <ListView Grid.Row="0" x:Name="BooksListView" ItemsSource="{Binding}" ItemTapped="OnBookClicked">
             <ListView.ItemTemplate>
