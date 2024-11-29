@@ -25,6 +25,10 @@ public partial class ShelfPage : ContentPage
             Filer.WriteToFile(newBook.Title, Path.Combine(FileSystem.Current.AppDataDirectory, Constants.UserFolder), content);
             newBook.RegisterToXML();
         }
+        else
+        {
+            await DisplayAlert("Error", "A book with the same title has already been added", "Dismiss");
+        }
     }
 
     private async void OnBookClicked(object sender, ItemTappedEventArgs args)
