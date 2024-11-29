@@ -2,25 +2,20 @@
 {
     public partial class BookPage : ContentPage
     {
-        Book book = new Book();
-        public BookPage(Book book)
-        {
-            InitializeComponent();
-            this.book = book;
-            LoadBook(book.Title);
-        }
+        Book book = ((App)Application.Current).Library.GetBookById(Preferences.Default.Get("last", String.Empty));
         public BookPage()
         {
             InitializeComponent();
-            Title = DateTime.Today.ToString();
-            string lastTitle = Preferences.Default.Get("last", String.Empty);
-            LoadBook(lastTitle);
+            LoadBook(book.Title);
         }
 
-        public void LoadBook(string title)
+        public async void LoadBook(string title)
         {
             if (title == String.Empty)
+            {
+                await Shell.Current.GoToAsync("//ShelfPage");
                 return;
+            }
             string content = Filer.GetTxtFileContent(Path.Combine(FileSystem.AppDataDirectory, Constants.UserFolder, title));
             bookBox.Add(
                 new Label { Text = content });
@@ -33,7 +28,7 @@
 
         private async void OnBtnToShelfClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ShelfPage());
+            await Shell.Current.GoToAsync("//ShelfPage");
             btnToShelf.IsVisible = false;
         }
     }

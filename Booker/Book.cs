@@ -18,7 +18,7 @@ namespace Booker
 
         public void SetAsPreferenced()
         {
-            Preferences.Default.Set("last", Title);
+            Preferences.Default.Set("last", Id);
         }
     }
 
@@ -41,6 +41,15 @@ namespace Booker
                     return true;
             }
             return false;
+        }
+
+        public Book GetBookById(string id)
+        {
+            List<Book> bk = Books.Where(b => b.Id == id).ToList();
+            if (bk.Count > 0)
+                return bk[0];
+            else
+                return new Book();
         }
     }
 }

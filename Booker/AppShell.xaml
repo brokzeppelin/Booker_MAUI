@@ -6,4 +6,10 @@
     xmlns:booker="clr-namespace:Booker"
     Shell.FlyoutBehavior="Disabled"
     Title="Booker">
+    <ShellContent Title="Book Page" 
+                  ContentTemplate="{DataTemplate booker:BookPage}"
+                  Route="BookPage"/>
+    <ShellContent Title="Library" 
+                  ContentTemplate="{DataTemplate booker:ShelfPage}"
+                  Route="ShelfPage"/>
 </Shell>
