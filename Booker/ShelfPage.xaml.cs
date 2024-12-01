@@ -40,4 +40,11 @@ public partial class ShelfPage : ContentPage
         await Navigation.PushAsync(new BookPage());
         BooksListView.SelectedItem = null;
     }
+
+    private void OnMenuItemDeleteClicked(object sender, EventArgs e)
+    {
+        MenuItem menuItem = sender as MenuItem;
+        Book bookItem = (Book)menuItem.BindingContext;
+        ((App)Application.Current).Library.Remove(bookItem);
+    }
 }

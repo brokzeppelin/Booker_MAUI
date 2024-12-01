@@ -16,9 +16,24 @@ namespace Booker
             Filer.InsertBookElement(XmlParser.Serialize(this));
         }
 
+        public void DeregisterFromXML()
+        {
+            Filer.RemoveBookElement(XmlParser.Serialize(this));
+        }
+
         public void SetAsPreferenced()
         {
             Preferences.Default.Set("last", Id);
+        }
+
+        public void UnsetAsPreferenced()
+        {
+            if (Preferences.Default.Get("last", String.Empty) == Id)
+                Preferences.Default.Set("last", String.Empty);
+        }
+        public void Delete()
+        {
+            Filer.DeleteFile(Title);
         }
     }
 
@@ -31,6 +46,14 @@ namespace Booker
         public void Add(Book book)
         {
             Books.Add(book);
+        }
+
+        public void Remove(Book book)
+        {
+            book.DeregisterFromXML();
+            book.UnsetAsPreferenced();
+            Filer.DeleteFile(book.Title);
+            Books.Remove(book);
         }
 
         public bool Contains(Book book)

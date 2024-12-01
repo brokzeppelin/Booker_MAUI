@@ -78,5 +78,20 @@ namespace Booker
             xmlDoc.Root!.Add(XElement.Parse(xmlElement));
             xmlDoc.Save(Path.Combine(FileSystem.Current.AppDataDirectory, Constants.UserFolder, Constants.SettingsFile));
         }
+
+        public static void RemoveBookElement(string xmlElement)
+        {
+            XElement el = XElement.Parse(xmlElement);
+            XDocument xmlDoc = XDocument.Load(Path.Combine(FileSystem.Current.AppDataDirectory, Constants.UserFolder, Constants.SettingsFile));
+            xmlDoc.Root
+                  .Elements("Book")
+                  .Where(e => (string)e.Element("Id").Value == el.Element("Id").Value)
+                  .Remove();
+            xmlDoc.Save(Path.Combine(FileSystem.Current.AppDataDirectory, Constants.UserFolder, Constants.SettingsFile));
+        }
+        public static void DeleteFile(string fileName)
+        {
+            File.Delete(Path.Combine(FileSystem.Current.AppDataDirectory, Constants.UserFolder, fileName));
+        }
     }
 }

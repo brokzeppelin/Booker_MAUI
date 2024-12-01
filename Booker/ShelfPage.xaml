@@ -10,6 +10,10 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type booker:Book}">
                     <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Delete"
+                                      Clicked="OnMenuItemDeleteClicked"/>
+                        </ViewCell.ContextActions>
                         <Grid Padding="10, 5">
                             <Label Text="{Binding Title}"/>
                         </Grid>                        
