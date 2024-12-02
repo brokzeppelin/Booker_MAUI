@@ -9,11 +9,13 @@
             <ProgressBar></ProgressBar>
         </VerticalStackLayout>
         <ScrollView
-            Grid.Row="1">
+            Grid.Row="1" x:Name="scroller">
             <StackLayout  Grid.Row="1" x:Name="bookBox">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnOnceTapped"
                                           NumberOfTapsRequired="1"/>
+                    <TapGestureRecognizer Tapped="OnTwiceTapped"
+                                          NumberOfTapsRequired="2"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
         </ScrollView>

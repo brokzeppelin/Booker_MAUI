@@ -31,6 +31,13 @@ namespace Booker
             if (Preferences.Default.Get("last", String.Empty) == Id)
                 Preferences.Default.Set("last", String.Empty);
         }
+
+        public void SetBookmark(double value)
+        {
+            Bookmark = value;
+            Filer.ChangeElemenlValueById(Id, value);
+        }
+
         public void Delete()
         {
             Filer.DeleteFile(Title);

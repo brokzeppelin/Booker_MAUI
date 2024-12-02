@@ -89,6 +89,19 @@ namespace Booker
                   .Remove();
             xmlDoc.Save(Path.Combine(FileSystem.Current.AppDataDirectory, Constants.UserFolder, Constants.SettingsFile));
         }
+
+        public static void ChangeElemenlValueById(string id, double value)
+        {
+            XDocument xmlDoc = XDocument.Load(Path.Combine(FileSystem.Current.AppDataDirectory, Constants.UserFolder, Constants.SettingsFile));
+            var element = xmlDoc.Root
+                  .Elements("Book")
+                  .Where(e => (string)e.Element("Id").Value == id)
+                  .Single()
+                  .Element("Bookmark");
+            element.Value = value.ToString("F2");
+            xmlDoc.Save(Path.Combine(FileSystem.Current.AppDataDirectory, Constants.UserFolder, Constants.SettingsFile));
+        }
+
         public static void DeleteFile(string fileName)
         {
             File.Delete(Path.Combine(FileSystem.Current.AppDataDirectory, Constants.UserFolder, fileName));

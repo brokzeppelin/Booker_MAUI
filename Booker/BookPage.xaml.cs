@@ -26,6 +26,11 @@
             btnToShelf.IsVisible = !btnToShelf.IsVisible;
         }
 
+        private void OnTwiceTapped(object sender, EventArgs e)
+        {
+            book.SetBookmark(scroller.ScrollY);            
+        }
+
         private async void OnBtnToShelfClicked(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("//ShelfPage");
