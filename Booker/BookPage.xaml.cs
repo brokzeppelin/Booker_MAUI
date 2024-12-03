@@ -19,6 +19,9 @@
             string content = Filer.GetTxtFileContent(Path.Combine(FileSystem.AppDataDirectory, Constants.UserFolder, title));
             bookBox.Add(
                 new Label { Text = content });
+            Timer timer = new Timer(obj => {
+                MainThread.BeginInvokeOnMainThread(() => scroller.ScrollToAsync(0, book.Bookmark, false));
+            }, null, 100, Timeout.Infinite);
         }
 
         private void OnOnceTapped(object sender, EventArgs e)
@@ -28,7 +31,8 @@
 
         private void OnTwiceTapped(object sender, EventArgs e)
         {
-            book.SetBookmark(scroller.ScrollY);            
+            book.SetBookmark(scroller.ScrollY);
+            //TODO: PopUp();
         }
 
         private async void OnBtnToShelfClicked(object sender, EventArgs e)
