@@ -27,24 +27,27 @@ public partial class ShelfPage : ContentPage
         }
         else
         {
+            //TODO: Change to PopUp
             await DisplayAlert("Error", "A book with the same title has already been added", "Dismiss");
         }
     }
 
     private async void OnBookClicked(object sender, ItemTappedEventArgs args)
     {
-        var item = args.Item as Book;
-        if (item == null)
-            return;
-        item.SetAsPreferenced();
-        await Navigation.PushAsync(new BookPage());
-        BooksListView.SelectedItem = null;
+        if (args.Item is Book bookItem)
+        {
+            bookItem.SetAsPreferenced();
+            await Navigation.PushAsync(new BookPage());
+            BooksListView.SelectedItem = null;
+        }
     }
 
     private void OnMenuItemDeleteClicked(object sender, EventArgs e)
     {
-        MenuItem menuItem = sender as MenuItem;
-        Book bookItem = (Book)menuItem.BindingContext;
-        ((App)Application.Current).Library.Remove(bookItem);
+        if (sender is MenuItem menuItem)
+        {
+            Book bookItem = (Book)menuItem.BindingContext;
+            ((App)Application.Current).Library.Remove(bookItem);
+        }
     }
 }
