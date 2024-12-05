@@ -27,22 +27,30 @@
         private void OnOnceTapped(object sender, EventArgs e)
         {
             btnToShelf.IsVisible = !btnToShelf.IsVisible;
+            btnInfo.IsVisible = !btnInfo.IsVisible;
         }
 
         private void OnTwiceTapped(object sender, EventArgs e)
         {
             book.SetBookmark(scroller.ScrollY);
-            PopUp();
+            PopUp("Success");
         }
 
         private async void OnBtnToShelfClicked(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("//ShelfPage");
+            btnInfo.IsVisible = false;
             btnToShelf.IsVisible = false;
         }
 
-        private void PopUp()
+        private void OnBtnInfoClicked(object sender, EventArgs e)
         {
+            PopUp("Double tap to set a bookmark");
+        }
+
+        private void PopUp(string text)
+        {
+            lblPopUp.Text = text;
             popUp.IsVisible = true;
             Timer timer = new Timer(obj => {
                 MainThread.BeginInvokeOnMainThread(() => popUp.IsVisible = false);

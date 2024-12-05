@@ -28,12 +28,22 @@
                 Clicked="OnBtnToShelfClicked"
                 IsVisible="False"
                 x:Name="btnToShelf"/>
+        <Button Grid.Row="1"
+                WidthRequest="50"
+                HeightRequest="50"
+                VerticalOptions="Start"
+                HorizontalOptions="End"
+                Margin="20"
+                Text="?"
+                Clicked="OnBtnInfoClicked"
+                IsVisible="False"
+                x:Name="btnInfo"/>
         <Frame x:Name="popUp"
                Grid.Row="1"
                VerticalOptions="End"
-               IsVisible="False">
-            <Label 
-               Text="Success"/>
+               IsVisible="False"
+               BackgroundColor="#000000">
+            <Label x:Name="lblPopUp"/>
         </Frame>
     </Grid>
 </ContentPage>
