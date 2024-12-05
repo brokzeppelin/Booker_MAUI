@@ -75,8 +75,11 @@ namespace Booker
 
         public Book GetBookById(string id)
         {
-            Book bk = Books.Where(b => b.Id == id).Single();
-            return bk;
+            var books = Books.Where(b => b.Id == id);
+            if (books.Count() > 0)
+                return books.Single();
+            else
+                return new Book();
         }
     }
 }

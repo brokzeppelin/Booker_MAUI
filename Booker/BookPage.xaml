@@ -28,5 +28,12 @@
                 Clicked="OnBtnToShelfClicked"
                 IsVisible="False"
                 x:Name="btnToShelf"/>
-         </Grid>
+        <Frame x:Name="popUp"
+               Grid.Row="1"
+               VerticalOptions="End"
+               IsVisible="False">
+            <Label 
+               Text="Success"/>
+        </Frame>
+    </Grid>
 </ContentPage>

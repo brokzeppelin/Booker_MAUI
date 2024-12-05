@@ -32,13 +32,21 @@
         private void OnTwiceTapped(object sender, EventArgs e)
         {
             book.SetBookmark(scroller.ScrollY);
-            //TODO: PopUp();
+            PopUp();
         }
 
         private async void OnBtnToShelfClicked(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("//ShelfPage");
             btnToShelf.IsVisible = false;
+        }
+
+        private void PopUp()
+        {
+            popUp.IsVisible = true;
+            Timer timer = new Timer(obj => {
+                MainThread.BeginInvokeOnMainThread(() => popUp.IsVisible = false);
+            }, null, 2000, Timeout.Infinite);
         }
     }
 }
