@@ -8,9 +8,13 @@ namespace Booker
         public App()
         {
             InitializeComponent();
-            MainPage = new AppShell();
             SetUpSettings();
             PopulateLibrary();
+        }
+
+        protected override Window CreateWindow(IActivationState? activationState)
+        {
+            return new Window(new AppShell());
         }
         private void SetUpSettings() 
         {

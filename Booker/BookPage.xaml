@@ -38,12 +38,12 @@
                 Clicked="OnBtnInfoClicked"
                 IsVisible="False"
                 x:Name="btnInfo"/>
-        <Frame x:Name="popUp"
+        <Border x:Name="popUp"
                Grid.Row="1"
                VerticalOptions="End"
                IsVisible="False"
                BackgroundColor="#000000">
             <Label x:Name="lblPopUp"/>
-        </Frame>
+        </Border>
     </Grid>
 </ContentPage>
