@@ -21,6 +21,7 @@
                 new Label { Text = content });
             Timer timer = new Timer(obj => {
                 MainThread.BeginInvokeOnMainThread(() => scroller.ScrollToAsync(0, book.Bookmark, false));
+                UpdateStatistics();
             }, null, 100, Timeout.Infinite);
         }
 
@@ -48,6 +49,11 @@
             PopUp("Double tap to set a bookmark");
         }
 
+        private void OnScrollViewScrolled(object sender, EventArgs e)
+        {
+            UpdateStatistics();
+        }
+
         private void PopUp(string text)
         {
             lblPopUp.Text = text;
@@ -55,6 +61,12 @@
             Timer timer = new Timer(obj => {
                 MainThread.BeginInvokeOnMainThread(() => popUp.IsVisible = false);
             }, null, 2000, Timeout.Infinite);
+        }
+
+        private void UpdateStatistics()
+        {
+            progressBar.Progress = scroller.ScrollY / scroller.ContentSize.Height;
+            lblProgressBar.Text = $"Progress: {progressBar.Progress.ToString("P2")}";
         }
     }
 }

@@ -6,10 +6,12 @@
     <Grid RowDefinitions="30, *">
         <VerticalStackLayout Grid.Row="0">
             <Label x:Name="lblProgressBar" FontSize="8"/>
-            <ProgressBar></ProgressBar>
+            <ProgressBar x:Name="progressBar"></ProgressBar>
         </VerticalStackLayout>
         <ScrollView
-            Grid.Row="1" x:Name="scroller">
+        Grid.Row="1" 
+        x:Name="scroller" 
+        Scrolled="OnScrollViewScrolled">
             <StackLayout  Grid.Row="1" x:Name="bookBox">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnOnceTapped"
