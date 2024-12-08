@@ -77,8 +77,10 @@
         }
 
         private void UpdateStatistics()
-        {
-            progressBar.Progress = scroller.ScrollY / scroller.ContentSize.Height;
+        {                
+            progressBar.Progress = 
+                (scroller.ContentSize.Height == 0) ? 0 
+                                                   : scroller.ScrollY / scroller.ContentSize.Height;
             lblProgressBar.Text = $"Progress: {progressBar.Progress.ToString("P2")}";
         }
     }
