@@ -25,10 +25,23 @@
             }, null, 100, Timeout.Infinite);
         }
 
-        private void OnOnceTapped(object sender, EventArgs e)
+        private async void OnOnceTapped(object sender, EventArgs e)
         {
-            btnToShelf.IsVisible = !btnToShelf.IsVisible;
-            btnInfo.IsVisible = !btnInfo.IsVisible;
+            switch (!btnToShelf.IsVisible && !btnInfo.IsVisible)
+            {
+                case true:
+                    btnToShelf.IsVisible = true;
+                    btnInfo.IsVisible = true;
+                    btnToShelf.TranslateTo(0, 20, 300);
+                    btnInfo.TranslateTo(0, 20, 300);
+                    break;
+                case false:
+                    btnToShelf.TranslateTo(0, -20, 300);
+                    await btnInfo.TranslateTo(0, -20, 300);
+                    btnToShelf.IsVisible = false;
+                    btnInfo.IsVisible = false;
+                    break;
+            }
         }
 
         private void OnTwiceTapped(object sender, EventArgs e)
