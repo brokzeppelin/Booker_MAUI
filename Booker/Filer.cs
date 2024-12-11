@@ -29,7 +29,7 @@ namespace Booker
                         });
         }
 
-        public static async Task<string> GetPickedFileFullPath()
+        public static async Task<string?> GetPickedFileFullPath()
         {
             var filePicked =  await FilePicker.Default.PickAsync(new PickOptions
             {
@@ -37,7 +37,7 @@ namespace Booker
                 FileTypes = TxtFileType
             });
 
-            return filePicked?.FullPath ?? String.Empty;
+            return filePicked?.FullPath;
         }
 
         public static string GetTxtFileContent(string pathToFile)
