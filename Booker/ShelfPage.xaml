@@ -15,7 +15,7 @@
                                       Clicked="OnMenuItemDeleteClicked"/>
                         </ViewCell.ContextActions>
                         <Grid Padding="10, 5">
-                            <Label Text="{Binding Title}"/>
+                            <Label Text="{Binding Title}" FontSize="18" FontAttributes="Bold" VerticalTextAlignment="Center"/>
                         </Grid>                        
                     </ViewCell>
                 </DataTemplate>
