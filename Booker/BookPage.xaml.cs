@@ -21,8 +21,8 @@
                 new Label { Text = content });
             Timer timer = new Timer(obj => {
                 MainThread.BeginInvokeOnMainThread(() => scroller.ScrollToAsync(0, book.Bookmark, false));
-                UpdateStatistics();
             }, null, 100, Timeout.Infinite);
+            UpdateStatistics();
         }
 
         private async void OnOnceTapped(object sender, EventArgs e)
