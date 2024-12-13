@@ -52,7 +52,7 @@
 
         private async void OnBtnToShelfClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//ShelfPage");
+            await Navigation.PushAsync(new ShelfPage());
             btnInfo.IsVisible = false;
             btnToShelf.IsVisible = false;
         }
