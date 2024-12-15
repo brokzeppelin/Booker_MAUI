@@ -4,6 +4,50 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+    <Shadow Brush="Black"
+        x:Key="Shadow"
+        Offset="0,5"
+        Opacity="0.3" />
+
+    <Style x:Key="ShelfListViewImage" TargetType="Image">
+        <Setter Property="Scale" Value="0.8" />
+    </Style>
+
+    <Style x:Key="ShelfListViewLabel" TargetType="Label">
+        <Setter Property="WidthRequest" Value="350" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="ShelfButtonExit" TargetType="Button">
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="WidthRequest" Value="50" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="VerticalOptions" Value="End" />
+        <Setter Property="Margin" Value="15" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Orange}" />
+        <Setter Property="Shadow" Value="{StaticResource Shadow}" />
+    </Style>
+
+    <Style x:Key="ShelfButtonAddBook" TargetType="Button">
+        <Setter Property="CornerRadius" Value="50" />
+        <Setter Property="WidthRequest" Value="100" />
+        <Setter Property="HeightRequest" Value="100" />
+        <Setter Property="Shadow" Value="{StaticResource Shadow}" />
+    </Style>
+
+    <Style x:Key="ShelfButtonSettings" TargetType="Button">
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="WidthRequest" Value="50" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="VerticalOptions" Value="End" />
+        <Setter Property="Margin" Value="15" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Orange}" />
+        <Setter Property="Shadow" Value="{StaticResource Shadow}" />
+    </Style>
+
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{StaticResource Orange}" />
     </Style>
@@ -159,7 +203,7 @@
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="Quicksand" />
         <Setter Property="FontSize" Value="14" />
-        <Setter Property="Padding" Value="0 10" />
+        <Setter Property="Padding" Value="10, 0, 10, 0" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
@@ -395,21 +439,21 @@
 
     <Style TargetType="Shell" ApplyToDerivedTypes="True">
         <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource Beige}, Dark={StaticResource Brown}}" />
-        <Setter Property="Shell.ForegroundColor" Value="{OnPlatform WinUI={StaticResource Beige}, Default={StaticResource Beige}}" />
+        <Setter Property="Shell.ForegroundColor" Value="{StaticResource Orange}" />
         <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Light={StaticResource Brown}, Dark={StaticResource Orange}}" />
         <Setter Property="Shell.DisabledColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
         <Setter Property="Shell.UnselectedColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray200}}" />
-        <Setter Property="Shell.NavBarHasShadow" Value="False" />
+        <Setter Property="Shell.NavBarHasShadow" Value="True" />
         <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Light={StaticResource Beige}, Dark={StaticResource Brown}}" />
         <Setter Property="Shell.TabBarForegroundColor" Value="{AppThemeBinding Light={StaticResource Beige}, Dark={StaticResource Brown}}" />
-        <Setter Property="Shell.TabBarTitleColor" Value="{AppThemeBinding Light={StaticResource Brown}, Dark={StaticResource Beige}}" />
+        <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource Orange}" />
         <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray200}}" />
     </Style>
 
     <Style TargetType="NavigationPage">
         <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource Beige}, Dark={StaticResource Brown}}" />
-        <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource White}}" />
-        <Setter Property="IconColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource White}}" />
+        <Setter Property="BarTextColor" Value="{StaticResource Orange}" />
+        <Setter Property="IconColor" Value="{StaticResource Orange}" />
     </Style>
 
     <Style TargetType="TabbedPage">

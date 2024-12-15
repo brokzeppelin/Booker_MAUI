@@ -10,7 +10,10 @@ public partial class ShelfPage : ContentPage
         BindingContext = ((App)Application.Current).Library.Books;
     }
 
-    private async void AddToShelf(object sender, EventArgs e)
+    void OnBtnExitClicked(object sender, EventArgs e)
+    { }
+
+    private async void OnBtnAddClicked(object sender, EventArgs e)
     {
         string pathToFile = await Filer.GetPickedFileFullPath();
         if (pathToFile != null)
@@ -35,6 +38,9 @@ public partial class ShelfPage : ContentPage
             }
         }
     }
+    
+    private void OnBtnSettingsClicked(object sender, EventArgs e)
+    { }
 
     private async void OnBookClicked(object sender, ItemTappedEventArgs args)
     {
