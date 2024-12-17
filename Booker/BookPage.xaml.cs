@@ -2,10 +2,14 @@
 {
     public partial class BookPage : ContentPage
     {
-        Book book = ((App)Application.Current).Library.GetBookById(Preferences.Default.Get("last", String.Empty));
+        Book book;
         public BookPage()
         {
             InitializeComponent();
+        }
+        protected override void OnAppearing()
+        {
+            book = ((App)Application.Current).Library.GetBookById(Preferences.Default.Get("last", String.Empty));
             LoadBook(book.Title);
         }
 
