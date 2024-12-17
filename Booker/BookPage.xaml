@@ -19,6 +19,7 @@
                     <TapGestureRecognizer Tapped="OnTwiceTapped"
                                           NumberOfTapsRequired="2"/>
                 </StackLayout.GestureRecognizers>
+                <Label x:Name="lblContent"/>
             </StackLayout>
         </ScrollView>
         <Button Grid.Row="1"

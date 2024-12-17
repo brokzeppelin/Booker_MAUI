@@ -17,8 +17,7 @@
                 return;
             }
             string content = Filer.GetTxtFileContent(Path.Combine(FileSystem.AppDataDirectory, Constants.UserFolder, title));
-            bookBox.Add(
-                new Label { Text = content });
+            lblContent.Text = content;
             Timer timer = new Timer(obj => {
                 MainThread.BeginInvokeOnMainThread(() => scroller.ScrollToAsync(0, book.Bookmark, false));
             }, null, 100, Timeout.Infinite);
