@@ -16,6 +16,7 @@
     <Style x:Key="ShelfListViewLabel" TargetType="Label">
         <Setter Property="WidthRequest" Value="350" />
         <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
     </Style>
 

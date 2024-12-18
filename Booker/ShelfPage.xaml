@@ -5,8 +5,8 @@
              x:Class="Booker.ShelfPage"
              xmlns:booker="clr-namespace:Booker"
              Title="Library">
-    <Grid RowDefinitions="*, 150, 150">
-        <ListView Grid.Row="0" 
+    <Grid RowDefinitions="*, 15, 120">
+        <ListView Grid.Row="0"
                   Grid.RowSpan="2" 
                   x:Name="BooksListView" 
                   ItemsSource="{Binding}" 
@@ -34,8 +34,8 @@
             <HorizontalStackLayout.Background>
                 <LinearGradientBrush EndPoint="0,1">
                     <GradientStop Color="Transparent"
-                                  Offset="0.5" />
-                    <GradientStop Color="{StaticResource Brown}"
+                                  Offset="0.1" />
+                    <GradientStop Color="{StaticResource DarkBrown}"
                                   Offset="1.0" />
                 </LinearGradientBrush>
             </HorizontalStackLayout.Background>
