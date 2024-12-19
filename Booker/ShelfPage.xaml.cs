@@ -47,7 +47,7 @@ public partial class ShelfPage : ContentPage
         if (args.Item is Book bookItem)
         {
             bookItem.SetAsPreferenced();
-            await Navigation.PushAsync(new BookPage());
+            await Shell.Current.GoToAsync("//BookPage");
             BooksListView.SelectedItem = null;
         }
     }
