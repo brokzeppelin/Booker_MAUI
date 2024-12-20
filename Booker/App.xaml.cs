@@ -8,6 +8,7 @@ namespace Booker
         public App()
         {
             InitializeComponent();
+            UserAppTheme = AppTheme.Light;
             SetUpSettings();
             PopulateLibrary();
         }
