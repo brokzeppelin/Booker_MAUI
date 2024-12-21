@@ -39,8 +39,10 @@ public partial class ShelfPage : ContentPage
         }
     }
     
-    private void OnBtnSettingsClicked(object sender, EventArgs e)
-    { }
+    private async void OnBtnSettingsClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new SettingsPage());
+    }
 
     private async void OnBookClicked(object sender, ItemTappedEventArgs args)
     {

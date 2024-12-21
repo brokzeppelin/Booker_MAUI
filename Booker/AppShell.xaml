@@ -12,4 +12,7 @@
     <ShellContent Title="Library" 
                   ContentTemplate="{DataTemplate booker:ShelfPage}"
                   Route="ShelfPage"/>
+    <ShellContent Title="Settings" 
+                  ContentTemplate="{DataTemplate booker:SettingsPage}"
+                  Route="SettingsPage"/>
 </Shell>
