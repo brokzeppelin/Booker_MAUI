@@ -49,6 +49,12 @@
         <Setter Property="Shadow" Value="{StaticResource Shadow}" />
     </Style>
 
+    <Style x:Key="BookContent" TargetType="Label">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontAttributes" Value="{AppThemeBinding Light=Bold}" />
+        <Setter Property="HorizontalTextAlignment" Value="Justify" />
+    </Style>
+
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{StaticResource Orange}" />
     </Style>
