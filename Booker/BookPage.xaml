@@ -3,15 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Booker.BookPage"
              Shell.NavBarIsVisible="False">
-    <Grid RowDefinitions="30, *">
+    <Grid RowDefinitions="20, *">
         <VerticalStackLayout Grid.Row="0">
-            <Label x:Name="lblProgressBar" FontSize="8"/>
-            <ProgressBar x:Name="progressBar"></ProgressBar>
+            <HorizontalStackLayout HeightRequest="16">
+                <Label x:Name="lblProgressBar" FontSize="8"/>
+            </HorizontalStackLayout>
+            <ProgressBar x:Name="progressBar" HeightRequest="4"></ProgressBar>
         </VerticalStackLayout>
-        <ScrollView
-        Grid.Row="1" 
-        x:Name="scroller" 
-        Scrolled="OnScrollViewScrolled">
+        <ScrollView Grid.Row="1" 
+                    x:Name="scroller" 
+                    Scrolled="OnScrollViewScrolled">
             <StackLayout  Grid.Row="1" x:Name="bookBox">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnOnceTapped"
