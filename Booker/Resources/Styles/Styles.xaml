@@ -9,6 +9,11 @@
         Offset="0,5"
         Opacity="0.3" />
 
+    <Shadow Brush="Black"
+        x:Key="ShadowTop"
+        Offset="0,-5"
+        Opacity="0.3" />
+
     <Style x:Key="ShelfListViewImage" TargetType="Image">
         <Setter Property="Scale" Value="0.8" />
     </Style>

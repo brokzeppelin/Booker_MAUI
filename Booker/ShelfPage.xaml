@@ -5,9 +5,8 @@
              x:Class="Booker.ShelfPage"
              xmlns:booker="clr-namespace:Booker"
              Title="Library">
-    <Grid RowDefinitions="*, 15, 120">
+    <Grid RowDefinitions="*, 120">
         <ListView Grid.Row="0"
-                  Grid.RowSpan="2" 
                   x:Name="BooksListView" 
                   ItemsSource="{Binding}" 
                   ItemTapped="OnBookClicked">
@@ -19,41 +18,36 @@
                                       Clicked="OnMenuItemDeleteClicked"/>
                         </ViewCell.ContextActions>
                         <Grid Padding="10, 5">
-                            <HorizontalStackLayout Shadow="{StaticResource Shadow}" >
+                            <HorizontalStackLayout >
                                 <Image Source="ico_book_open" 
                                        Style="{StaticResource ShelfListViewImage}"/>
                                 <Label Text="{Binding Title}" 
                                        Style="{StaticResource ShelfListViewLabel}"/>
                             </HorizontalStackLayout>
-                        </Grid>                        
+                        </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <HorizontalStackLayout Grid.Row="1">
-            <HorizontalStackLayout.Background>
-                <LinearGradientBrush EndPoint="0,1">
-                    <GradientStop Color="Transparent"
-                                  Offset="0.1" />
-                    <GradientStop Color="{StaticResource DarkBrown}"
-                                  Offset="1.0" />
-                </LinearGradientBrush>
-            </HorizontalStackLayout.Background>
-        </HorizontalStackLayout>
-        <Button Grid.Row="2"
-                Text="x"
-                Clicked="OnBtnExitClicked"
-                Style="{StaticResource ShelfButtonExit}" >
-        </Button>
-        <Button Grid.Row="2"
-                Text="+"
-                Clicked="OnBtnAddClicked"
-                Style="{StaticResource ShelfButtonAddBook}">
-        </Button>
-        <Button Grid.Row="2"
-                Text="..."
-                Clicked="OnBtnSettingsClicked"
-                Style="{StaticResource ShelfButtonSettings}">
-        </Button>
+        <Grid Grid.Row="1" ColumnDefinitions="70, *, 70" Shadow="{StaticResource ShadowTop}">
+            <Rectangle HorizontalOptions="Fill" 
+                       Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" 
+                       BackgroundColor="{AppThemeBinding Light={StaticResource Beige}, Dark={StaticResource Brown}}"/>
+            <Button Grid.Column="0"
+                    Text="x"
+                    Clicked="OnBtnExitClicked"
+                    Style="{StaticResource ShelfButtonExit}" >                
+            </Button>
+            <Button Grid.Column="1"
+                    Text="+"
+                    Clicked="OnBtnAddClicked"
+                    Style="{StaticResource ShelfButtonAddBook}">                
+            </Button>
+            <Button Grid.Column="2"
+                    Text="..."
+                    Clicked="OnBtnSettingsClicked"
+                    Style="{StaticResource ShelfButtonSettings}">
+            </Button>
+        </Grid>
     </Grid>
 </ContentPage>
