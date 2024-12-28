@@ -21,14 +21,15 @@ public partial class ShelfPage : ContentPage
             Book newBook = new Book()
             {
                 Id = Guid.NewGuid().ToString(),
-                Title = Path.GetFileName(pathToFile)
+                Title = Path.GetFileNameWithoutExtension(pathToFile),
+                Extention = Path.GetExtension(pathToFile)
             };
 
             if (!((App)Application.Current).Library.Contains(newBook))
             {
                 ((App)Application.Current).Library.Add(newBook);
                 string content = Filer.GetTxtFileContent(pathToFile);
-                Filer.WriteToFile(newBook.Title, Path.Combine(FileSystem.Current.AppDataDirectory, Constants.UserFolder), content);
+                Filer.WriteToFile(newBook.GetFilename(), Path.Combine(FileSystem.Current.AppDataDirectory, Constants.UserFolder), content);
                 newBook.RegisterToXML();
             }
             else

@@ -10,22 +10,25 @@
         protected override void OnAppearing()
         {
             book = ((App)Application.Current).Library.GetBookById(Preferences.Default.Get("last", String.Empty));
-            LoadBook(book.Title);
+            LoadBook(book.GetFilename());
         }
 
-        public async void LoadBook(string title)
+        public async void LoadBook(string filename)
         {
-            if (title == String.Empty)
+            if (filename == String.Empty)
             {
                 await Shell.Current.GoToAsync("//ShelfPage");
-                return;
             }
-            string content = Filer.GetTxtFileContent(Path.Combine(FileSystem.AppDataDirectory, Constants.UserFolder, title));
-            lblContent.Text = content;
-            Timer timer = new Timer(obj => {
-                MainThread.BeginInvokeOnMainThread(() => scroller.ScrollToAsync(0, book.Bookmark, false));
-            }, null, 100, Timeout.Infinite);
-            UpdateStatistics();
+            else
+            {
+                string content = Filer.GetTxtFileContent(Path.Combine(FileSystem.AppDataDirectory, Constants.UserFolder, filename));
+                lblContent.Text = content;
+                Timer timer = new Timer(obj =>
+                {
+                    MainThread.BeginInvokeOnMainThread(() => scroller.ScrollToAsync(0, book.Bookmark, false));
+                }, null, 100, Timeout.Infinite);
+                UpdateStatistics();
+            }
         }
 
         private async void OnOnceTapped(object sender, EventArgs e)

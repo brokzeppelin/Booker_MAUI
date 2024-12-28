@@ -8,6 +8,7 @@ namespace Booker
     public class Book
     {
         public string Id { get; set; } = String.Empty;
+        public string Extention {  get; set; } = String.Empty;
         public string Title { get; set; } = String.Empty;
         public double Bookmark { get; set; } = 0;
 
@@ -38,9 +39,17 @@ namespace Booker
             Filer.ChangeElemenlValueById(Id, value);
         }
 
+        public string GetFilename()
+        {
+            if (this.Title != String.Empty || this.Extention != String.Empty)
+                return String.Concat(this.Title, this.Extention);
+            else
+                return String.Empty;
+        }
+
         public void Delete()
         {
-            Filer.DeleteFile(Title);
+            Filer.DeleteFile(this.GetFilename());
         }
     }
 
@@ -59,7 +68,7 @@ namespace Booker
         {
             book.DeregisterFromXML();
             book.UnsetAsPreferenced();
-            Filer.DeleteFile(book.Title);
+            book.Delete();
             Books.Remove(book);
         }
 
@@ -67,7 +76,7 @@ namespace Booker
         {
             foreach (Book b in Books)
             {
-                if (b.Title == book.Title)
+                if (b.GetFilename() == book.GetFilename())
                     return true;
             }
             return false;
@@ -76,10 +85,7 @@ namespace Booker
         public Book GetBookById(string id)
         {
             var books = Books.Where(b => b.Id == id);
-            if (books.Count() > 0)
-                return books.Single();
-            else
-                return new Book();
+            return books.Any() ? books.Single() : new Book();
         }
     }
 }
