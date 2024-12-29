@@ -27,8 +27,9 @@ public partial class ShelfPage : ContentPage
 
             if (!((App)Application.Current).Library.Contains(newBook))
             {
-                ((App)Application.Current).Library.Add(newBook);
                 string content = Filer.GetTxtFileContent(pathToFile);
+                newBook.Words = Text.GetWordsCount(content);
+                ((App)Application.Current).Library.Add(newBook);
                 Filer.WriteToFile(newBook.GetFilename(), Path.Combine(FileSystem.Current.AppDataDirectory, Constants.UserFolder), content);
                 newBook.RegisterToXML();
             }
