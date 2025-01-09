@@ -6,7 +6,7 @@
     <Grid RowDefinitions="20, *">
         <VerticalStackLayout Grid.Row="0">
             <HorizontalStackLayout HeightRequest="16">
-                <Label x:Name="lblProgressBar" FontSize="8"/>
+                <Label x:Name="lblPageCount" FontSize="8"/>
             </HorizontalStackLayout>
             <ProgressBar x:Name="progressBar" HeightRequest="4"></ProgressBar>
         </VerticalStackLayout>

@@ -10,5 +10,6 @@ namespace Booker
     {
         public const string UserFolder = "UserBooks";
         public const string SettingsFile = "settings.xml";
+        public const short WordsPerPage = 300;
     }
 }

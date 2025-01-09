@@ -10,7 +10,7 @@ namespace Booker
         public string Id { get; set; } = String.Empty;
         public string Extention {  get; set; } = String.Empty;
         public string Title { get; set; } = String.Empty;
-        public int Words { get; set; } = 0;
+        public int Pages { get; set; } = 0;
         public double Bookmark { get; set; } = 0;
 
         public void RegisterToXML()

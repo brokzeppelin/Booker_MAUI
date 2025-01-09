@@ -87,7 +87,13 @@
             progressBar.Progress = 
                 (scroller.ContentSize.Height == 0) ? 0 
                                                    : scroller.ScrollY / scroller.ContentSize.Height;
-            lblProgressBar.Text = $"Progress: {progressBar.Progress.ToString("P2")}";
+            lblPageCount.Text = $"Page {GetCurrentPageNumber()} of {book.Pages}";
+        }
+
+        private int GetCurrentPageNumber()
+        {
+            int pageNumber = (int)Math.Ceiling(scroller.ScrollY / (scroller.ContentSize.Height / book.Pages));
+            return pageNumber == 0 ? 1 : pageNumber;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Booker
 {
     public static class Text
     {
-        public static int GetWordsCount(string text)
+        public static int GetPageCount(string text) // assuming that a single page holds approximately 300 words
         {
             int wordCount = 0, index = 0;
 
@@ -24,7 +24,7 @@ namespace Booker
                     index++;
             }
 
-            return wordCount;
+            return (int)Math.Ceiling((double)wordCount / Constants.WordsPerPage);
         }
     }
 }
