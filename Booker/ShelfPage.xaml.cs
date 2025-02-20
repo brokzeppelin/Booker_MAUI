@@ -11,7 +11,9 @@ public partial class ShelfPage : ContentPage
     }
 
     void OnBtnExitClicked(object sender, EventArgs e)
-    { }
+    {
+        Application.Current.Quit();
+    }
 
     private async void OnBtnAddClicked(object sender, EventArgs e)
     {
