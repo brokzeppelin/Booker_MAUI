@@ -1,7 +1,49 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:booker="clr-namespace:Booker"
+             xmlns:vm="clr-namespace:Booker.ViewModel"
              x:Class="Booker.SettingsPage"
              Title="SettingsPage">
-    
+    <ContentPage.Resources>
+        <DataTemplate x:Key="switchSettingTemplate">
+            <Grid ColumnDefinitions="4*, 1*">
+                <VerticalStackLayout Grid.Column="0" Margin="0,15">
+                    <Label FontSize="22" Text="{Binding Name}"/>
+                    <Label TextColor="{StaticResource Gray500}" Text="{Binding Description}"/>
+                </VerticalStackLayout>
+                <Switch Grid.Column="1" Scale="1.5" HorizontalOptions="Center"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="stepperSettingTemplate">
+            <Grid ColumnDefinitions="2*, 1*">
+                <VerticalStackLayout Grid.Column="0" Margin="0,15">
+                    <Label FontSize="22" Text="{Binding Name}"/>
+                    <Label TextColor="{StaticResource Gray500}" Text="{Binding Description}"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1">
+                    <Label FontSize="{Binding Value}" HorizontalOptions="Center" Text="{Binding Value}"/>
+                    <Stepper Grid.Column="1" Increment="{Binding Step}" Minimum="{Binding Min}" Maximum="{Binding Max}" Value="{Binding Value}"/>
+                </VerticalStackLayout>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="noControlSettingTemplate">
+            <Grid ColumnDefinitions="4*, 1*">
+                <VerticalStackLayout Grid.Column="0" Margin="0,15">
+                    <Label FontSize="22" Text="{Binding Name}"/>
+                    <Label TextColor="{StaticResource Gray500}" Text="{Binding Description}"/>
+                </VerticalStackLayout>
+            </Grid>
+        </DataTemplate>
+        <booker:SettingTemplateSelector x:Key="settingDataTemplateSelector"
+                                        SwitchSettingTemplate="{StaticResource switchSettingTemplate}"
+                                        StepperSettingTemplate="{StaticResource stepperSettingTemplate}"
+                                        NoControlSettingTemplate="{StaticResource noControlSettingTemplate}"/>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <vm:SettingViewModel/>
+    </ContentPage.BindingContext>
+    <CollectionView ItemsSource="{Binding Settings}"
+                    ItemTemplate="{StaticResource settingDataTemplateSelector}">
+    </CollectionView>
 </ContentPage>
