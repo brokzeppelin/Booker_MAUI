@@ -1,29 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Booker
 {
-    public abstract class Setting    
+    public abstract class Setting
     {
         public string Name { get; set; } = String.Empty;
         public string Alias { get; set; } = String.Empty;
         public string Description { get; set; } = String.Empty;
-        public int Value { get; set; }
     }
 
-    public class SwitchSetting : Setting
-    {
-        
+    public class SwitchSetting : Setting, INotifyPropertyChanged
+    {        
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private bool value;
+        public bool Value
+        {
+            get => value;
+            set
+            {
+                this.value = value;
+                OnPropertyChanged(nameof(Value));
+            }
+        }
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
 
-    public class StepperSetting : Setting
+    public class StepperSetting : Setting, INotifyPropertyChanged
     {
         public int Min { get; set; }
         public int Max { get; set; }
         public int Step { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private int value;
+        public int Value
+        {
+            get => value;
+            set { 
+                this.value = value;
+                OnPropertyChanged(nameof(Value));
+            }
+        }
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
 
     public class SettingTemplateSelector : DataTemplateSelector

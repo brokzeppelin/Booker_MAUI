@@ -17,14 +17,14 @@ namespace Booker.ViewModel
                 new SwitchSetting() { 
                     Alias = "DarkTheme", 
                     Name = "Dark theme", 
-                    Value = 0, 
+                    Value = false, 
                     Description = "Choose color scheme for the app" 
                 },
 
                 new SwitchSetting() { 
                     Alias = "DailyReadingDose", 
                     Name = "Daily reading dose", 
-                    Value = 0, 
+                    Value = false, 
                     Description = "Track your daily reading progress" 
                 },
 
@@ -41,7 +41,7 @@ namespace Booker.ViewModel
                 new SwitchSetting() { 
                     Alias = "EnableReadingGoalNotifications", 
                     Name = "Enable notifications when the reading goal is reached", 
-                    Value = 0 
+                    Value = false 
                 },
 
                 new StepperSetting() { 
@@ -57,7 +57,7 @@ namespace Booker.ViewModel
                 new SwitchSetting() { 
                     Alias = "BoldText", 
                     Name = "Bold text", 
-                    Value = 0, 
+                    Value = false, 
                     Description = "Adjust the font weight for the book" 
                 }
             };
