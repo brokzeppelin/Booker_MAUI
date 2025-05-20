@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<controls:SettingControl xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                         xmlns:controls="clr-namespace:Booker.Controls"
+                         x:Name="this"
+                         x:Class="Booker.Controls.StepperSettingControl"
+                         x:DataType="controls:StepperSettingControl">
+    <Grid ColumnDefinitions="2*, 1*"
+          BindingContext="{x:Reference this}">
+        <VerticalStackLayout Grid.Column="0" 
+                             Margin="0,15">
+            <Label FontSize="22" 
+                   Text="{Binding Alias}"/>
+            <Label TextColor="{StaticResource Gray500}" 
+                   Text="{Binding Description}"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout Grid.Column="1">
+            <Label FontSize="22" 
+                   HorizontalOptions="Center" 
+                   Text="{Binding Value}"/>
+            <Stepper Grid.Column="1" 
+                     x:Name="{Binding Name}"
+                     Increment="{Binding Increment}" 
+                     Minimum="{Binding Min}" 
+                     Maximum="{Binding Max}"
+                     Value="{Binding Value}"/>
+        </VerticalStackLayout>
+    </Grid>
+</controls:SettingControl>
